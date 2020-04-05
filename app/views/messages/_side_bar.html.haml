@@ -9,8 +9,8 @@
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog', class: 'side-bar__header__user-box__edit__icons')
   .side-bar__footer
-    .side-bar__footer__group
-      - current_user.groups.each do |group|
+    - current_user.groups.each do |group|
+      .side-bar__footer__group
         .side-bar__footer__group__group-name{id:"message"}
           = link_to group_messages_path(group.id),class:"side-bar__footer__group__group-name" do
             = group.name
