@@ -1,9 +1,15 @@
 $(function() {
 
   function messagebuild(message){
-    var html =`<div class="side-bar__footer__group__message-name">
+    if(message.image){
+      var html =`<div class="side-bar__footer__group__message-name">
+    画像が投稿されています
+    </div>`
+    }else {
+      var html =`<div class="side-bar__footer__group__message-name">
     ${message.content}
     </div>`
+  }
     return html
   }
   function buildHTML(message){
