@@ -11,7 +11,7 @@
   .side-bar__footer
     .side-bar__footer__group
       - current_user.groups.each do |group|
-        .side-bar__footer__group__group-name
+        .side-bar__footer__group__group-name{id:"message"}
           = link_to group_messages_path(group.id),class:"side-bar__footer__group__group-name" do
             = group.name
         .side-bar__footer__group__message-name

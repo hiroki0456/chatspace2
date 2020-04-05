@@ -1,5 +1,11 @@
 $(function() {
 
+  function messagebuild(message){
+    var html =`<div class="side-bar__footer__group__message-name">
+    ${message.content}
+    </div>`
+    return html
+  }
   function buildHTML(message){
     if (message.content && message.image){
     var html = `<div class="main-bar__middle__box" data-message-id="${message.id}>
@@ -62,6 +68,9 @@ $(function() {
     })
     .done(function(data){
       let html = buildHTML(data);
+      let message = messagebuild(data);
+      $(".side-bar__footer__group__message-name").remove();
+      $("#message").after(message);
       $('.main-bar__middle').append(html);
       $('form')[0].reset();
       $('.main-bar__middle').animate({ scrollTop: $('.main-bar__middle')[0].scrollHeight});
