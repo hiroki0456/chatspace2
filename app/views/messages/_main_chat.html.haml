@@ -1,0 +1,21 @@
+.main-bar
+  .main-bar__header
+    .main-bar__header__group
+      .main-bar__header__group__group-name
+        = @group.name
+      .main-bar__header__group__user-name
+        menbers:
+        - @group.users.each do |user|
+          = user.name
+    .main-bar__header__edit
+      = link_to "edit",edit_group_path(@group.id), class: "main-bar__header__edit__edit-btn"    
+  .main-bar__middle
+    = render @messages
+  .main-bar__footer
+    = form_for [@group, @message] do |f|
+      .main-bar__footer__form-input
+        = f.text_field :content, class:"main-bar__footer__form-input__text", placeholder:"type a message"
+        = f.label :image, class:"main-bar__footer__form-input__image" do
+          = icon('fas', 'image')
+          =f.file_field :image, class:"main-bar__footer__form-input__image__file"
+      = f.submit 'send', class:"main-bar__footer__form-input__submit"
