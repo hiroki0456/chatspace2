@@ -1,5 +1,9 @@
 $(function() {
-
+  Urls = []
+  $(".side-bar__footer__group__group-name").each(function(){
+    Urls.push($(this).attr('href'));
+  });
+  currentUrl = window.location.pathname
   function buildHTML(message){
     if (message.content && message.image){
     var html = `<div class="main-bar__middle__box" data-message-id="${message.id}>
@@ -51,7 +55,7 @@ $(function() {
   $("#new_message").on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
-    let url = $(this).attr('action')
+    let url = $(this).attr('action');
     $.ajax({
       url: url,
       type: "post",
