@@ -6,7 +6,7 @@ $(function() {
   currentUrl = window.location.pathname
   function buildHTML(message){
     if (message.content && message.image){
-    var html = `<div class="main-bar__middle__box" data-message-id="${message.id}>
+    var html = `<div class="main-bar__middle__box" data-message-id="${message.id}">
     <div class="main-bar__middle__box__upper-info">
     <p class="main-bar__middle__box__upper-info__name">
     ${message.user_name}
@@ -15,13 +15,14 @@ $(function() {
     ${message.created_at}
     </p>
     </div>
-    <div class="main-bar__middle__box__text">
-    ${message.content}<br>
-    <img src=${message.image} class="main-bar__middle__box__image"
-    </div>
+    <div class="main-bar__middle__box__text"></div>
+    <img class="main-bar__middle__box__image" src="${message.image}" alt="Test image">
+    ${message.content}
+    <br>
     </div>`
   }else if (message.content){
-    var html = `<div class="main-bar__middle__box" data-message-id="${message.id}>
+    var html = 
+    `<div class="main-bar__middle__box" data-message-id="${message.id}">
     <div class="main-bar__middle__box__upper-info">
     <p class="main-bar__middle__box__upper-info__name">
     ${message.user_name}
@@ -30,12 +31,12 @@ $(function() {
     ${message.created_at}
     </p>
     </div>
-    <div class="main-bar__middle__box__text">
+    <div class="main-bar__middle__box__text"></div>
     ${message.content}
-    </div>
+    <br>
     </div>`
   } else if (message.image){
-    var html = `<div class="main-bar__middle__box" data-message-id="${message.id}>
+    var html = `<div class="main-bar__middle__box" data-message-id="${message.id}">
     <div class="main-bar__middle__box__upper-info">
     <p class="main-bar__middle__box__upper-info__name">
     ${message.user_name}
@@ -44,9 +45,9 @@ $(function() {
     ${message.created_at}
     </p>
     </div>
-    <div class="main-bar__middle__box__text">
-    <img src=${message.image} class="main-bar__middle__box__image"
-    </div>
+    <div class="main-bar__middle__box__text"></div>
+    <img class="main-bar__middle__box__image" src="${message.image}" alt="Test image">
+    <br>
     </div>`
   };
   return html;
