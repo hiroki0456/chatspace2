@@ -1,9 +1,5 @@
 $(function() {
-  Urls = []
-  $(".side-bar__footer__group__group-name").each(function(){
-    Urls.push($(this).attr('href'));
-  });
-  currentUrl = window.location.pathname
+  groupIds = []
   function buildHTML(message){
     if (message.content && message.image){
     var html = `<div class="main-bar__middle__box" data-message-id="${message.id}">
@@ -16,9 +12,9 @@ $(function() {
     </p>
     </div>
     <div class="main-bar__middle__box__text"></div>
-    <img class="main-bar__middle__box__image" src="${message.image}" alt="Test image">
     ${message.content}
     <br>
+    <img class="main-bar__middle__box__image" src="${message.image}" alt="Test image">
     </div>`
   }else if (message.content){
     var html = 
@@ -70,6 +66,7 @@ $(function() {
       $('.main-bar__middle').append(html);
       $('form')[0].reset();
       $('.main-bar__middle').animate({ scrollTop: $('.main-bar__middle')[0].scrollHeight});
+      $('#' + data.groupId).html(data.content);
     })
     .always(function(){
       $(".main-bar__footer__form-input__submit").prop('disabled', false);
@@ -80,20 +77,32 @@ $(function() {
   });
   let reloadMessages = function(){
     let last_message_id = $('.main-bar__middle__box:last').data("message-id");
+    groupIds.length = 0;
+    $(".side-bar__footer__group__message-name").each(function(){
+      groupIds.push($(this).attr('id'));
+    });
     $.ajax({
       url: "api/messages",
       type: 'get',
       dataType: 'json',
-      data: {id: last_message_id}
+      data: {id: last_message_id,group_ids: groupIds}
     })
     .done(function(messages){
       if (messages.length !== 0) {
       let insertHTML = '';
+      let path = location.pathname ;
       $.each(messages, function(i, message) {
+        if(`/groups/${message.groupId}/messages` == path ){
+          if(message.id !== last_message_id){
         insertHTML += buildHTML(message)
-      });
       $('.main-bar__middle').append(insertHTML);
+      $('#' + message.groupId).html(message.content);
       $('.main-bar__middle').animate({ scrollTop: $('.main-bar__middle')[0].scrollHeight});
+    }
+       }else if (`/groups/${message.groupId}/messages` !== path ){
+        $('#' + message.groupId).html(message.content);
+  }
+  });
     }
     })
     .fail(function(){
