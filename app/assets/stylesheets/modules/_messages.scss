@@ -57,7 +57,9 @@
       }
     }
   }
-  
+  #checked:checked + a{
+    color: red;
+  }
 }
 
 .main-bar{
@@ -161,7 +163,13 @@
   .new_message{
     display: flex;
   }
-  .fas{
-    font-size: inherit;
+  .fa-trash-alt{
+    padding-left: 10px;
+    cursor: pointer;
   }
+}
+
+.edit-input{
+  width: 100%;
+  height: 50px;
 }

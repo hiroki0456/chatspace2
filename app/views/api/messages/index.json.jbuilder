@@ -13,4 +13,5 @@ json.array! @group_messages do |group_message|
   json.id group_message.id
   json.user_name group_message.user.name
   json.groupId group_message.group_id
+  json.currentUserId current_user.id
 end

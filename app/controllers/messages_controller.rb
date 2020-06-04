@@ -19,6 +19,25 @@ class MessagesController < ApplicationController
     end
   end
 
+  def edit
+    @message = Message.find(params[:message_id])
+  end
+
+  def update
+    @message = Message.find(params[:id])
+    if @message.update(message_params)
+      respond_to do |format|
+        format.json
+      end
+    end
+
+  end
+
+  def destroy
+      @message = Message.find(params[:message_id])
+      @message.destroy
+  end
+  
   private
 
   def message_params

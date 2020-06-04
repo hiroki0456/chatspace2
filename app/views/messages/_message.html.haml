@@ -1,11 +1,14 @@
-.main-bar__middle__box{data: {message: {id: message.id}}}
+.main-bar__middle__box{{id: current_user.id},data: {message: {id: message.id}}}
   .main-bar__middle__box__upper-info
     %p.main-bar__middle__box__upper-info__name 
       = message.user.name
     %p.main-bar__middle__box__upper-info__date
       = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
-  .main-bar__middle__box__text
-  - if message.content.present?
-    = message.content
+    %p.main-bar__middle__box__upper-info__icon
+      = icon("fas", "trash-alt")
+      = icon("far", "edit", class:"main-bar__middle__box__upper-info__icon__edit")
+  .main-bar__middle__box__text{id: "#{message.id}"}
+    - if message.content.present?
+      = message.content
     %br
   = image_tag message.image.url, class:"main-bar__middle__box__image" if message.image.present?

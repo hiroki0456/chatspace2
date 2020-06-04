@@ -3,7 +3,6 @@ $(function() {
   $(".js-chat-member").each(function(){
     userIds.push($(this).attr('id'))
   });
-
   function addUser(user) {
     let html = `
       <div class="chat-group-user clearfix">
@@ -31,7 +30,7 @@ $(function() {
     $(".js-add-user").append(html);
   }
   function addMember(userId) {
-    let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
+    let html = `<input value="${userId}" name="group[user_ids][]" class:"user-id" type="hidden" id="group_user_ids_${userId}" />`;
     $(`#${userId}`).append(html);
   }
   $("#user-search-field").on("keyup", function() {
@@ -70,8 +69,8 @@ $(function() {
     addMember(userId);
   });
   $(document).on("click", ".chat-group-user__btn--remove", function() {
-     let userid = $(".user-id").val();
-    userIds = userIds.filter(id => id != userid);
+    const removeId = $(this).siblings('input').val();
+    userIds = userIds.filter(id => id != removeId);
     $(this)
       .parent()
       .remove();

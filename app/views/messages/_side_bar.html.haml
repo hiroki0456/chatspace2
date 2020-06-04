@@ -12,7 +12,7 @@
     - current_user.groups.each do |group|
       .side-bar__footer__group
         .side-bar__footer__group__group-name__id
-          = link_to group_messages_path(group.id),class:"side-bar__footer__group__group-name" do
+          = link_to group_messages_path(group.id),class:"side-bar__footer__group__group-name",id:"checked" do
             = group.name
         .side-bar__footer__group__message-name{id: group.id}
           = group.show_last_message
