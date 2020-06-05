@@ -80,7 +80,7 @@ $(function() {
         $('form')[0].reset();
         var deletetag = document.getElementById('delete');
         $(deletetag).remove();
-        $('#new_message').attr('action', '/groups/11/messages')
+        $('#new_message').attr('action', `/groups/${data.groupId}/messages`)
         $('#' + data.id).html(data.content)
       }else if(url.match(/\/groups\/\d+\/messages/)){
         let html = buildHTML(data);
