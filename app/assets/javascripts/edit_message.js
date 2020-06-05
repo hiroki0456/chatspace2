@@ -17,7 +17,7 @@ $(function(){
       $('.main-bar__footer__form-input__text').attr("value",`${message.content}`)
       // 送信ボタンがクリックされたときのアクション先を変更する
       $('input[value="✓"]').after('<input id="delete" type="hidden" name="_method" value="patch"></input>')
-      $('#new_message').attr('action', `/groups/11/messages/${message.id}`)
+      $('#new_message').attr('action', `/groups/${message.groupId}/messages/${message.id}`)
     })
   })
 })
